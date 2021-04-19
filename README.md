@@ -36,7 +36,4 @@ GitHub: https://github.com/Bryan-Thaoxaochay
 
 * Lighthouse
 * Lazy Loading
-* Minification
 * Compression
-* Service Workers
-* Webpack
