@@ -31,3 +31,12 @@ https://github.com/Bryan-Thaoxaochay/Budget-Tracker
 
 Email: bthaoxaochay@gmail.com
 GitHub: https://github.com/Bryan-Thaoxaochay 
+
+## To Do
+
+* Lighthouse
+* Lazy Loading
+* Minification
+* Compression
+* Service Workers
+* Webpack
