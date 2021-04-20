@@ -1,6 +1,3 @@
-const CACHE_NAME = "static-cache-v1";
-const DATA_CACHE_NAME = "data-cache-v1";
- 
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
@@ -9,16 +6,23 @@ const FILES_TO_CACHE = [
     'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 ]
 
+const CACHE_NAME = "static-cache-v1";
+const DATA_CACHE_NAME = "data-cache-v1";
+ 
 // install
 self.addEventListener("install", function (evt) {
-  evt.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log("Your files were pre-cached successfully!");
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
- 
-  self.skipWaiting();
+    // evt.waitUntil(
+    //     caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/icons")) // ???
+    //   );
+
+    evt.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+        console.log("Your files were pre-cached successfully!");
+        return cache.addAll(FILES_TO_CACHE);
+        })
+    );
+    
+    self.skipWaiting();
 });
 
 self.addEventListener("activate", function (evt) {

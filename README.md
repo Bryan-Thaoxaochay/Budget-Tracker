@@ -35,5 +35,4 @@ GitHub: https://github.com/Bryan-Thaoxaochay
 ## To Do
 
 * Lighthouse
-* Lazy Loading
-* Compression
+* IndexedDB
