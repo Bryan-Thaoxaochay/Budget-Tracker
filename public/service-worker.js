@@ -27,7 +27,7 @@ const DATA_CACHE_NAME = "data-cache-v1";
 // install
 self.addEventListener("install", function (evt) {
     evt.waitUntil(
-        caches.open(DATA_CACHE_NAME).then((cache) => cache.add("api/transaction"))
+        caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/transaction"))
     );
 
     evt.waitUntil(
@@ -40,11 +40,29 @@ self.addEventListener("install", function (evt) {
     self.skipWaiting();
 });
 
+// activate
+self.addEventListener("activate", function (evt) {
+    evt.waitUntil(
+        caches.keys().then(keyList => {
+            return Promise.all(
+                keyList.map(key => {
+                    if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                        console.log("Removing old cache data", key);
+                        return caches.delete(key);
+                    }
+                })
+            );
+        })
+    );
+
+    self.clients.claim();
+});
+
 // fetch
 self.addEventListener("fetch", function (evt) {
     // cache successful requests to the API
     if (evt.request.url.includes("/api/")) {
-        evt.respondWith(
+        evt.respondWith( // Issue with object and response
         caches.open(DATA_CACHE_NAME).then(cache => {
             return fetch(evt.request)
             .then(response => {
@@ -72,22 +90,4 @@ self.addEventListener("fetch", function (evt) {
         })
     );
     
-});
-
-// activate
-self.addEventListener("activate", function (evt) {
-    evt.waitUntil(
-        caches.keys().then(keyList => {
-            return Promise.all(
-                keyList.map(key => {
-                    if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-                        console.log("Removing old cache data", key);
-                        return caches.delete(key);
-                    }
-                })
-            );
-        })
-    );
-
-    self.clients.claim();
 });
