@@ -25,7 +25,11 @@ https://github.com/Bryan-Thaoxaochay/Budget-Tracker
 ## What I Learned
 
 ### List
-1. 
+1. Progressive Web Apps
+
+2. Minification
+
+3. IndexedDB
 
 ## Contact Information
 
