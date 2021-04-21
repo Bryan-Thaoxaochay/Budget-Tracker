@@ -21,17 +21,17 @@ request.onsuccess = (event) => {
     // Check if app is offline
     if (navigator.offline) { // navigator.offline
         document.querySelector("#add-btn").onclick = function() {
-            addTransaction();
+            saveRecord();
         };
 
         document.querySelector("#sub-btn").onclick = function() {
-            addTransaction();
+            saveRecord();
         };
     } 
 };
 
 // Adding data to DB
-function addTransaction() {
+function saveRecord() {
 
     let nameEl = JSON.stringify(document.querySelector("#t-name").value);
     let amountEl = JSON.stringify(document.querySelector("#t-amount").value);
