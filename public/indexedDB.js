@@ -16,14 +16,18 @@ request.onerror = (event) => {
 request.onsuccess = (event) => {
     db = event.target.result;
 
-    document.querySelector("#add-btn").onclick = function() {
-        addTransaction();
-    };
+    const fish = true
 
-    // // Check if app is offline
-    // if (navigator.offline) {
-    //     addTransaction();
-    // } 
+    // Check if app is offline
+    if (navigator.offline) { // navigator.offline
+        document.querySelector("#add-btn").onclick = function() {
+            addTransaction();
+        };
+
+        document.querySelector("#sub-btn").onclick = function() {
+            addTransaction();
+        };
+    } 
 };
 
 // Adding data to DB
@@ -31,6 +35,10 @@ function addTransaction() {
 
     let nameEl = JSON.stringify(document.querySelector("#t-name").value);
     let amountEl = JSON.stringify(document.querySelector("#t-amount").value);
+
+    // if (!isAdding) {
+    //     amountEl *= -1;
+    // }
 
     let transactionObject = [ { name: nameEl, value: amountEl, date: new Date().toISOString() } ]
 
