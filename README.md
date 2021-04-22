@@ -10,7 +10,7 @@ HTML, CSS, JavaScript, Node, Express, Mongoose, MongoDB, indexedDB, cache API, S
 
 ## Screenshots
 
-![](images/)
+![](images/homescreen.png)
 
 ## Links
 
