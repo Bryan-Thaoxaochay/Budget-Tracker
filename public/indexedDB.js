@@ -16,10 +16,11 @@ request.onerror = (event) => {
 request.onsuccess = (event) => {
     db = event.target.result;
 
-    const fish = true
-
     // Check if app is offline
-    if (navigator.offline) { // navigator.offline
+    if (navigator.onLine) {
+        checkDatabase();
+    } 
+    else if (!navigator.onLine) {
         document.querySelector("#add-btn").onclick = function() {
             let isAdding = true
             saveRecord(isAdding);
