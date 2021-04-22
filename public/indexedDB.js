@@ -21,26 +21,30 @@ request.onsuccess = (event) => {
     // Check if app is offline
     if (navigator.offline) { // navigator.offline
         document.querySelector("#add-btn").onclick = function() {
-            saveRecord();
+            let isAdding = true
+            saveRecord(isAdding);
         };
 
         document.querySelector("#sub-btn").onclick = function() {
-            saveRecord();
+            let isAdding = false
+            saveRecord(isAdding);
         };
     } 
 };
 
 // Adding data to DB
-function saveRecord() {
+function saveRecord(isAdding) {
 
     let nameEl = JSON.stringify(document.querySelector("#t-name").value);
-    let amountEl = JSON.stringify(document.querySelector("#t-amount").value);
+    let amountEl = document.querySelector("#t-amount").value;
 
-    // if (!isAdding) {
-    //     amountEl *= -1;
-    // }
+    if (!isAdding) {
+        amountEl *= -1;
+    }
 
-    let transactionObject = [ { name: nameEl, value: amountEl, date: new Date().toISOString() } ]
+    let amountString = JSON.stringify(amountEl);
+
+    let transactionObject = [ { name: nameEl, value: amountString, date: new Date().toISOString() } ]
 
     const transaction = db.transaction(['transactions'], 'readwrite'); // Create transaction
     const table = transaction.objectStore('transactions'); // Access table
